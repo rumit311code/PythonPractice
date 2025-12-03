@@ -10,7 +10,7 @@ import random
 """
 ThreadPoolExecutor: Running Tasks Concurrently.
 This example demonstrates how to use ThreadPoolExecutor to execute tasks concurrently and 
-retrieve results in the order of completion "futures.as_completed".
+retrieve results in the ORDER of COMPLETION "futures.as_completed".
 This processes results as soon as they finish, allowing early handling of fast jobs.
 """
 def mail_letter(letter):
@@ -31,7 +31,7 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
 
 """
 ThreadPoolExecutor: Using "executor.map" for Ordered Results
-You can use executor.map if result order must match submission order.
+You can use executor.map if result order must match SUBMISSION ORDER.
 This prints results in the same order as the original list, regardless of task completion order.
 """
 def mail_letter2(letter):

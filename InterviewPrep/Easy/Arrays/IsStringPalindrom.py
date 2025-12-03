@@ -1,6 +1,6 @@
 def is_palindrome(string):
     # Normalize the string to lowercase to make the check case-insensitive
-    string = string.lower()
+    string = string.lower() # use this if only for case-insensitive.
     # Check if the string is equal to its reverse
     if string == string[::-1]:
         # string[start:end:step]

@@ -18,7 +18,9 @@ def myfunc(n):
     return lambda a: a * n
 
 mydoubler = myfunc(2)
-print(mydoubler(11))  # Output: 22
+mytrippler = myfunc(3)
+print(mydoubler(3))  # Output: 3(n) * 2(a) = 6
+print(mytrippler(3))  # Output: 3(n) * 3(a) = 9
 
 ###### Using Lambda with map() and filter()
 # Doubles each element in a list:
@@ -33,9 +35,9 @@ print(new_list)  # Output: [4, 6, 8, 12]
 
 ###### Lambda for Sorting
 # Sort a list of tuples by the second value:
-students = [("Emil", 25), ("Tobias", 22), ("Linus", 28)]
+students = [("Emil", 25), ("Tobias", 22), ("Linus", 28), ("Linus", 22)]
 sorted_students = sorted(students, key=lambda x: x[1])
-print(sorted_students)  # Output: [('Tobias', 22), ('Emil', 25), ('Linus', 28)]
+print(sorted_students)  # Output: [('Linus', 22), ('Tobias', 22), ('Emil', 25), ('Linus', 28)]
 
 # Sort list of strings by length:
 words = ["apple", "pie", "banana", "cherry"]

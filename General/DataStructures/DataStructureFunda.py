@@ -32,14 +32,14 @@ shallow_copy_list = list(original_list) # Or original_list.copy()
 # This creates a new integer object 5 and assigns it to shallow_copy_list[0] and
 # does NOT modify original_list[0] which is still pointing at 1 (and not 5).
 
-shallow_copy_list[0] = 5
-shallow_copy_list[2] = "world"
+shallow_copy_list[0] = 5 # updates only shallow_copy_list.
+shallow_copy_list[2] = "world" # updates only shallow_copy_list.
 
 print(original_list) # Output: [1, 2, 'hello']
 print(shallow_copy_list) # Output: [5, 2, 'world']
 
-original_list[0] = 10
-original_list[2] = "hello2"
+original_list[0] = 10 # updates only original_list.
+original_list[2] = "hello2" # updates only original_list.
 
 print(original_list) # Output: [10, 2, 'hello2']
 print(shallow_copy_list) # Output: [5, 2, 'world']
@@ -61,10 +61,10 @@ shallow_copy_list_of_lists.append([5, 6]) # Modifies only shallow_copy_list_of_l
 # but it does NOT change any of the EXISTING objects that both the ORIGINAL and COPIED lists were referencing.
 # Since the original list is a separate list object, its structure remains unchanged.
 
-print(original_list_of_lists) # Output: [[1, 2], [3, 4]]
+print(original_list_of_lists) # Output: [[1, 2], [3, 4]] # no change to original list.
 print(shallow_copy_list_of_lists) # Output: [[1, 2], [3, 4], [5, 6]]
 
-shallow_copy_list_of_lists[0][0] = 99 # change by REFERENCE of and EXISTING element
+shallow_copy_list_of_lists[0][0] = 99 # change by REFERENCE of an EXISTING element
 # Modifies a nested mutable object (shared reference).
 # This modifies the *actual nested list object* at index 0.
 # so both original_list_of_lists and shallow_copy_list_of_lists are modified.

@@ -55,14 +55,30 @@ class LinkedList:
 
 class Solution:
     def reverseList(self, head: Node) -> Node:
+        # 1 -> 2 -> 3 -> None
         previous = None
-        current = head
-
+        current = head # 1
+        i=1
         while current:
-            tmp_next = current.next
-            current.next = previous
-            previous = current
-            current = tmp_next
+            # input: 1 -> 2 -> 3 -> None
+            #
+            # loop 1 BEFORE, previous: None, current: 1, next: 2
+            # loop 1 AFTER, previous: 1, current: 2, next: 3
+            #   1 -> None
+            #
+            # loop 2 BEFORE, previous: 1, current: 2, next: 3
+            # loop 2 AFTER, previous: 2, current: 3, next: None
+            #   2 -> 1 -> None
+            #
+            # loop 3 BEFORE, previous: 2, current: 3, next: None
+            # loop 3 AFTER, previous: 3, current: None, next: None
+            #   3 -> 2 -> 1 -> None
+            #
+            # output: 3 -> 2 -> 1 -> None
+            tmp_next = current.next  # tmp_next = 2, 3, None
+            current.next = previous  # 1.next = None, 2.next = 1, 3.next = 2
+            previous = current  # new previous = 1, 2, 3
+            current = tmp_next  # new next = 2, 3, None
         return previous
 
 """

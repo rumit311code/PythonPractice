@@ -38,10 +38,10 @@ class Solution:
         l, r = 0, 1
         max_profit = 0
 
-        while r < len(prices):
+        while r < len(prices): # iterate until right pointer reaches end of the list.
             if prices[l] < prices[r]: # profit, no need to change left pointer.
                 max_profit = max(max_profit, prices[r] - prices[l])
-            else: # loss or no gain, move left pointer.
+            else: # loss or no gain.
                 l = r # move left pointer to right.
             r += 1 # keep moving right pointer in each iteration.
 

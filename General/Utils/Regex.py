@@ -3,26 +3,26 @@ import re
 """
 This example FINDS every character between 'a' and 'e' in the string and returns them as a list.
 """
-pattern = r"[a-e]"
-text = "Aye, said Mr. Gibenson Stark"
-matches = re.findall(pattern, text)
+pattern1 = r"[a-e]"
+text1 = "Aye, said Mr. Gibenson Stark"
+matches = re.findall(pattern1, text1)
 print(matches)
 # Output: ['e', 'a', 'd', 'b', 'e', 'a']
 
 """
 This SPLITS the string at each sequence of digits.
 """
-string = 'Twelve:12 Eighty nine:89.'
-pattern = r'\d+'
-result = re.split(pattern, string)
-print(result)
+pattern2 = r'\d+'
+text2 = 'Twelve:12 Eighty nine:89.'
+result2 = re.split(pattern2, text2)
+print(result2)
 # Output: ['Twelve:', ' Eighty nine:', '.']
 
 """
 This REPLACES every whitespace character with the number '9'.
 """
-txt = "The rain in Spain"
-x = re.sub(r"\s", "9", txt)
+text3 = "The rain in Spain"
+x = re.sub(r"\s", "9", text3)
 print(x)
 # Output: 'The9rain9in9Spain'
 
@@ -67,6 +67,8 @@ Search vs Match
 print(re.match(r"hello", "hello world"))  # Matches at start, returns a match object
 print(re.match(r"world", "hello world"))  # No match at start, returns None
 print(re.search(r"world", "hello world")) # Finds 'world' anywhere, returns a match object
+match = re.search(r"world", "hello world")
+print(f"asdfasdf ====" + match.group())
 
 """
 re iterator

@@ -1,6 +1,8 @@
 import requests
 
-# GET
+#####
+##### GET
+#####
 def get_posts():
     url = 'https://jsonplaceholder.typicode.com/posts'
     try:
@@ -21,7 +23,9 @@ if posts:
 else:
     print('Failed to fetch posts from API.')
 
-# POST
+#####
+##### POST
+#####
 
 api_url = "https://jsonplaceholder.typicode.com/todos"
 todo = {"userId": 1, "title": "Buy milk", "completed": False}
@@ -30,9 +34,9 @@ response = requests.post(api_url, json=todo)
 print(response.json())
 print(response.status_code)
 
-"""
-HTTP Basic authentication with username/password
-"""
+#####
+##### HTTP Basic authentication with username/password
+#####
 from requests.auth import HTTPBasicAuth
 
 url = 'https://httpbin.org/basic-auth/user/passwd'
@@ -47,9 +51,9 @@ else:
     print("Authentication failed with status code:", response.status_code)
 
 
-"""
-API key authentication
-"""
+#####
+##### API key authentication
+#####
 url = 'https://api.mockapi.com/data'
 api_key = 'your_api_key_here'
 
@@ -68,9 +72,9 @@ response = requests.get(url, headers=headers)
 print("Status Code:", response.status_code)
 print("Response Body:", response.text)
 
-"""
-Token-Based Authentication with JWT Example
-"""
+#####
+##### Token-Based Authentication with JWT Example
+#####
 auth_url = 'https://example.com/api/authenticate'
 api_url = 'https://example.com/api/resource'
 username = 'user'

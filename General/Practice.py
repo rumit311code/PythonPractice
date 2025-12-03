@@ -1,44 +1,62 @@
+# dp = {}
+# dp1 = ()
+dp = {}
+
+dp["info"] = dp.get("info", 0) + 1
+print(dp["info"])
+print(dp)
 from typing import List
 
-def get_count(timestamps: List[int], start: int, end: int) -> int:
-    start_index = 0
-    end_index = 0
-    for i in range(len(timestamps)): # O(n)
-        if timestamps[i] <= start:
-            start_index += 1
+container: List[int] = []
+print(container)
 
-        if timestamps[i] <= end:
-            end_index += 1
-    print(f"start_index: {start_index}, end: {end_index}")
-    return len(timestamps[start_index:end_index + 1])  # O(n)
+lst1 = [1,2,3,4,5,6]
+lst2 = [1,2,3,4,5]
 
-print(get_count(timestamps=[1, 3, 5, 7, 9, 11], start=3, end=7))
+n1 = len(lst1)
+n2 = len(lst2)
+
+print(f"even % {n1 % 2}")
+print(f"odd % {n2 % 2}")
+print(f"even // {n1 // 2}")
+print(f"odd // {n2 // 2}")
+# lst3 = [0]
+# lst4 = [0]
+#
+# print(lst3 == lst4)
+#
+# print(lst2 in lst1)
+#
+# for i in range(4, 4):
+#     print(f"i:{i}")
+# print(range(3, 4))
 exit(0)
-    # mid = (start_index + end_index) // 2
+print(type(dp))
+print(type(dp1))
+print(type(dp2))
 
-    # if timestamps[mid] >= start
-    #     start_index -= mid
+nums = [1,2,3,4,5,6,7,8,9]
 
-    # if timestamps[mid] <= start
-    #     end_index += mid
+print(nums[nums.index(3):nums.index(7)+1])
 
-    # while start_index > 0 or end_index < len(timestamps):
-    #     # if timestamps[start_index] <= start:
-    #     #     start_index += 1
-    #
-    #     # if timestamps[end_index] <= end:
-    #     # end_index -= 1
-    #     if timestamps[mid] >= start
-    #         start_index -= mid
-    #
-    #     if timestamps[mid] <= end
-    #         end_index += mid
-
+exit(0)
 
 print(17/5) # floating number
 print(17//5) # remainder
 print(17%5) # quotient
 
+print(format(21, '032b')[::-1])
+print(int(format(21, '032b')[::-1], 2))
+
+print(format(-21, '032b'))
+print(int(format(-21, '032b')[::-1], 2))
+
+print(format(21 & 0xFFFFFFFF, '032b'))
+print(int(format(21 & 0xFFFFFFFF, '032b'), 2))
+
+print(format(-21 & 0xFFFFFFFF, '032b'))
+print(int(format(-21 & 0xFFFFFFFF, '032b'), 2))
+exit(0)
 lst1 = [1,2,3]
 lst2 = [4,5]
 print(lst1)

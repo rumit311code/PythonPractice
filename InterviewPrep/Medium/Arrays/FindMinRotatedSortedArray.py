@@ -45,6 +45,12 @@ from typing import List
 
 class Solution:
     def findMin(self, nums: List[int]) -> int:
+        # Input: nums = [3,4,5,6,1,2]
+        # loop l < r -> comparing index. starting with l=0, r=5, minimum (res)=3 (1st element).
+        # m = (0 + 5) // 2 = 2, nums[l]=3, nums[r]=2, nums[m]=5 -> res < nums[m], no change in res. nums[m] > nums[l] -> l=2+1=3
+        # m = (3 + 5) // 2 = 4, nums[l]=6, nums[r]=2, nums[m]=1 -> nums[m] < res, update res (new min). nums[m] < nums[l] -> r=3
+        # m = (3 + 3) // 2 = 3, nums[l]=6, nums[r]=6, nums[m]=1 -> res = nums[m], no change in res. nums[m] < nums[l] -> l=3+1=4
+        # l > r -> loop ends. res = 1.
         res = nums[0]
         l, r = 0, len(nums)-1
 

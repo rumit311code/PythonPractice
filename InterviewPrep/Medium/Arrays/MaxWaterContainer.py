@@ -30,8 +30,8 @@ class Solution1:
         start_time = time.time()
         max_area = 0
 
-        for l in range(len(height)):
-            for r in range(l +1, len(height)):
+        for l in range(len(height)): # first O(n)
+            for r in range(l +1, len(height)): # nested O(n). hence O(n^2).
                 max_area = max(max_area, (r - l) * min(height[l], height[r]))
         print(f"Time taken ===|{time.time() - start_time}|")
         return max_area
@@ -44,11 +44,11 @@ class Solution2:
         start_time = time.time()
         max_area = 0
 
-        l = 0
-        r = len(height) - 1
-        while l < r:
+        l = 0 # first
+        r = len(height) - 1 # last
+        while l < r: # max O(n)
             max_area = max(max_area, (r - l) * min(height[l], height[r]))
-            if height[l] < height[r]: # shift right
+            if height[l] <= height[r]: # shift right
                 l += 1
             else: # shift left
                 r -= 1

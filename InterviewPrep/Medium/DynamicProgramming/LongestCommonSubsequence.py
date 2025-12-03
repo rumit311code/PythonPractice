@@ -3,6 +3,8 @@ https://neetcode.io/problems/longest-common-subsequence
 
 Longest Common Subsequence
 
+Video: https://www.youtube.com/watch?v=Ua0GhsJSlWM
+
 Given two strings text1 and text2, return the length of the
 longest common subsequence between the two strings if one exists, otherwise return 0.
 
@@ -43,20 +45,34 @@ text1 and text2 consist of only lowercase English characters.
 # fill out the matrix
 # create a matrix of (i+1 x j+1)
 #   set all last row and last column values to 0
-# start loop from i+1, j+1 and iterate up to the beginning of the matrix
+# start loop from (i+1, j+1) and iterate up to the beginning of the matrix (0,0)
 #   if characters match
 #       1 + (value at diagonal cell) -> this is a match of the character
 #   if characters don't match
 #       0 + max(i+1(right), j+1(bottom))
 #   repeat
-# the answer will be the value in the top-left cell.
-
+# the answer will be the value in the top-left (0,0) cell.
+# final matrix below for reference for "crabt" and "cat"
+#
+#    c  a  t
+# c [3, 2, 1, 0]
+# r [2, 2, 1, 0]
+# a [2, 2, 1, 0]
+# b [1, 1, 1, 0]
+# t [1, 1, 1, 0]
+#   [0, 0, 0, 0]
 class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
         dp = [[0 for j in range(len(text2) + 1)] for i in range(len(text1) + 1)]
+        # [0, 0, 0, 0]
+        # [0, 0, 0, 0]
+        # [0, 0, 0, 0]
+        # [0, 0, 0, 0]
+        # [0, 0, 0, 0]
+        # [0, 0, 0, 0]
         # all cell values set to 0 to start with
 
-        print(f"dp: {dp}")
+        [print(r) for r in dp]
 
         for i in range(len(text1) - 1, -1, -1): # First O(n) loop
             for j in range(len(text2) - 1, -1, -1): # Second O(n) loop
@@ -65,13 +81,14 @@ class Solution:
                 else: # characters don't match
                     dp[i][j] = max(dp[i][j+1], dp[i+1][j])
                     # max of right cell(dp[i][j+1]) or bottom cell(dp[i+1][j])
-                print(f"dp update: {dp}")
-        return dp[0][0] # return top-left cell value
+                print(f"==========")
+                [print(r) for r in dp]
+        return dp[0][0] # return top-left cell value.
 
 print(f"(crabt, cat): {Solution().longestCommonSubsequence("crabt","cat")}")
 
 
 """
-Runtime: O(n^2) -> two nested O(n) loops for matrix traversal.
+Runtime: O(len(text1) * len(text2)) -> two nested O(n) loops for matrix traversal.
 Space: O(n^2) -> 2d matrix storage.
 """

@@ -58,11 +58,11 @@ class Solution:
                     continue
             else: # m is in right sorted array
                 print(f"IF 2")
-                if target < nums[m] or target > nums[r]: # search left for the target
+                if target < nums[m] or target > nums[r]: # target is on the left side of the middle
                     print(f"IF 2A")
                     r = m -1
                     continue
-                elif target <= nums[r]: # search right for the target
+                elif target <= nums[r]:  # target is on the right side of the middle
                     print(f"IF 2B")
                     l = m +1
                     continue

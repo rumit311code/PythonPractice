@@ -18,6 +18,20 @@ class Solution1:
 
     def to_32bit_signed(self, n) -> str:
         return format(n & 0xFFFFFFFF, '032b')
+        # 032b will format "10101" -> "00000000000000000000000000010101". 0 is for padding.
+        # 32b will format "10101" -> "                            10101". Default for padding is "space".
+        # without 32 bit format, it the number will have only 5 digits.
+        #   so, reversing 10101 gives 10101 which is the same number, which is incorrect answer.
+        #   by formatting in 32 bits, 10101 -> 00000000000000000000000000010101
+        #   so, reversing it becomes 10101000000000000000000000000000 -> 2818572288
+        #
+        # mask "n & 0xFFFFFFFF" required to handle negative numbers. This is also called "two's complement"
+        # 21:  00000000000000000000000000010101
+        #   00000000000000000000000000010101 & 0xFFFFFFFF -> 00000000000000000000000000010101 -> same number.
+        #   So, masking is NOT needed for positive numbers.
+        # -21: -0000000000000000000000000010101 (1st bit is "-" and NOT "0" which messes up and hence masking is needed.)
+        #   -0000000000000000000000000010101 & 0xFFFFFFFF -> 11111111111111111111111111101011
+        #   masking removes the "-" sign
 
     def reverseBits(self, n: int) -> int:
         # This will not work because it's not 32 bits
@@ -30,7 +44,7 @@ class Solution1:
         # works only for unsinged (positive) int
         # print(f"to_32bit_unsigned: {self.to_32bit_unsigned(n)}") # 21: 00000000000000000000000000010101
         # print(f"to_32bit_unsigned[::-1]: {self.to_32bit_unsigned(n)[::-1]}") # 10101000000000000000000000000000
-        # print(f"to_32bit_unsigned[::-1]: {int(self.to_32bit_unsigned(n)[::-1], 2)}") # 2818572288
+        # print(f"to_32bit_unsigned[::-1]: {int(self.to_32bit_uansigned(n)[::-1], 2)}") # 2818572288
 
         # works for both signed and unsinged int
         print(f"to_32bit_signed: {self.to_32bit_signed(n)}") # 21: 00000000000000000000000000010101
@@ -38,8 +52,8 @@ class Solution1:
         print(f"to_32bit_signed[::-1]: {int(self.to_32bit_signed(n)[::-1], 2)}") # 2818572288
         return int(self.to_32bit_signed(n)[::-1], 2)
 
-# print(Solution1().reverseBits(21))
-# print(Solution1().reverseBits(-21))
+print(Solution1().reverseBits(21))
+print(Solution1().reverseBits(-21))
 """
 Runtime: O(1) because its always 32 bit
 
@@ -75,5 +89,5 @@ Runtime: O(1) because its always 32 loops irrespective of the number.
 Space: O(1)
 """
 
-print(Solution2().reverseBits(21))
-print(Solution2().reverseBits(-21))
+# print(Solution2().reverseBits(21))
+# print(Solution2().reverseBits(-21))

@@ -32,20 +32,20 @@ Constraints:
 """
 from typing import List
 
-class Solution: # No need to create a class
+class Solution:
     def two_sum(self, nums: List[int], target: int) -> List[int]:
-        prevMap = {}  # val: index
+        dp = {} # val: index
         for i, val in enumerate(nums): # using enumerate so that index and value can be accessed simultaneously.
             diff  = target - val
-            if diff in prevMap:
-                return [prevMap[diff], i] # the matching number with target diff found.
-            prevMap[val] = i # keep adding non-matches
+            if diff in dp:
+                return [dp[diff], i] # the matching number with target diff found.
+            dp[val] = i # keep adding non-matches
 
-            # if j not in res:
-            #     res[v] = i # if not, add the value and index.
+            # if diff not in res:
+            #     res[val] = i # if not, add the value and index.
             # else:
-            #     output.extend([res.get(j), i])
-            #     break # dont break if all pairs need to be found
+            #     output.extend([res.get(diff), val])
+            #     break # don't break if all pairs to be returned
         return [] # no pair found
 
 nums = [5,5,8,10,0,6,8]

@@ -39,10 +39,13 @@ class Solution:
     def rob(self, nums: List[int]) -> int:
         # max of all the houses except for first and last because first and last are adjacent.
         # nums[0] for the case where nums has only one element.
-        return max(nums[0], self.helper(nums[1:]),self.helper(nums[:-1]))
+        # self.helper(nums[1:]) -> second to the last
+        # self.helper(nums[:-1]) -> first to the second last
+        return max(nums[0], self.helper(nums[1:]),self.helper(nums[:len(nums)-1]))
 
     def helper(self, nums: List[int]) -> int:
         one_house_back, two_houses_back = 0, 0
+        # this is same as HouseRobber1.
         # [two_back, one_back, n, n+1, ...]
         # two_houses_back: previous to previous house
         # one_house_back: previous house

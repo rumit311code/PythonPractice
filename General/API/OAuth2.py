@@ -1,7 +1,10 @@
 import time
 import requests
 
-# OAuth2 configuration
+#####
+##### OAuth2 configuration
+#####
+
 token_url = "https://authorization-server.com/oauth2/token"
 client_id = "your_client_id"
 client_secret = "your_client_secret"
@@ -23,11 +26,15 @@ def call_protected_api(access_token):
     response = requests.get(api_url, headers=headers) # works same for post also, just that post will have some data.
     return response
 
-# Main logic
+#####
+##### Main logic
+#####
 access_token, expires_in = get_access_token()
 token_expiry = time.time() + expires_in
 
-# Example usage loop
+#####
+##### Example usage loop
+#####
 for _ in range(5):  # Make 5 API calls as an example
     if time.time() >= token_expiry:
         print("Access token expired, refreshing...")

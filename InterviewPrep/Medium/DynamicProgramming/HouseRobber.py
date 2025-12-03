@@ -41,7 +41,28 @@ class Solution:
         # two_houses_back: previous to previous house
         # one_house_back: previous house
         # maintain just last 2 houses that you can rob
+        # [2,9,8,3,6]
         #
+        # loop1: n=2, one_house_back=0, two_houses_back=0
+        #   temp = max(2+0,0) = 2
+        #   two_houses_back = 0
+        #   one_house_back = 2
+        # loop2: n=9, one_house_back=2, two_houses_back=0
+        #   temp = max(9+0,2) = 9
+        #   two_houses_back = 2
+        #   one_house_back = 9
+        # loop3: n=8, one_house_back=9, two_houses_back=2
+        #   temp = max(8+2,9) = 10
+        #   two_houses_back = 9
+        #   one_house_back = 10
+        # loop4: n=3, one_house_back=10, two_houses_back=9
+        #   temp = max(3+9,10) = 12
+        #   two_houses_back = 10
+        #   one_house_back = 12
+        # loop5: n=6, one_house_back=12, two_houses_back=10
+        #   temp = max(6+10,12) = 16
+        #   two_houses_back = 12
+        #   one_house_back = 16 -> Answer
         for n in nums: # O(n) loop
             temp = max(n + two_houses_back, one_house_back)
             two_houses_back = one_house_back

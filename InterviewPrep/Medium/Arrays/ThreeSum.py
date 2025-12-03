@@ -58,7 +58,7 @@ class Solution:
             while l < r: # inner O(n) loop for b and c, and hence O(n^2)
                 print(f"val|l|nums[l]|r|nums[r]| ---- |{val}|{l} -> {nums[l]}|{r} -> {nums[r]}|")
 
-                threeSum = val + nums[l] + nums[r] # this can be any target. the program below is for 0.
+                threeSum = val + nums[l] + nums[r] # this can be any target. the code below is for target=0.
                 print(f"threeSum| ---- |{threeSum}|")
 
                 if threeSum > 0: # sum more than target, reduce c.

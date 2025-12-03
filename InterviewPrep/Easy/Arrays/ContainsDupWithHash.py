@@ -21,18 +21,19 @@ from typing import List
 class Solution:
     def contains_duplicate(self, nums: List[int]) -> bool:
         # Solution1: using hashset
-        hashset = set()
-
-        for n in nums:
-            if n in hashset:
-                return True
-            hashset.add(n)
-        return False
+        # use this if only True/False needed on the first occurrence.
+        # hashset = set()
+        #
+        # for n in nums:
+        #     if n in hashset:
+        #         return True
+        #     hashset.add(n)
+        # return False
 
         # Solution2: using counter
-        # occurence_count = Counter(nums)
-        # all_dups = [key for key, value in occurence_count.items() if value > 1]
-        # return True if all_dups else False
+        # use this if all dups needed.
+        # occurrence_count = Counter(nums)
+        return True if [k for k, v in Counter(nums).items() if v > 1] else False
 
 
 print(f"contains dup |{Solution().contains_duplicate([1, 2, 3, 3])}|")

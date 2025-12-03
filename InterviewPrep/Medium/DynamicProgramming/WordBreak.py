@@ -3,6 +3,8 @@ https://neetcode.io/problems/word-break
 
 Word Break
 
+https://www.youtube.com/watch?v=Sx9NNgInc3A
+
 Given a string s and a dictionary of strings wordDict,
 return true if s can be segmented into a space-separated sequence of dictionary words.
 
@@ -40,31 +42,32 @@ class Solution1:
     # use dynamic programming from bottom up
     # start from last index and keep matching each word in the word dict
     # start with dp[len(s)] = True and then keep iterating until dp[0] for the len(s)
+    #
     # For s=neetcode | wordDict=['neet','code']
     # for each word length of wordDict do the following
     #
-    # formula: dp[i] = dp[i + len(word)]
+    # formula: dp[i] = dp[i + len(word)] -> i = 0 to len(s) = [0,1,2,3,4,5,6,7,8]
     #
     # dp[8] = empty string = True
     # dp[7] = e = False
     # dp[6] = de = False
     # dp[5] = ode = False
-    # dp[4] = code = True # found in wordDict
+    # dp[4] = code = True # found in wordDict # dp[4]=dp[i=4 + len(w)=4] -> dp[4]=dp[8] -> dp[4]=True
     # dp[3] = tcode = False
     # dp[2] = etcode = False
     # dp[1] = eetcode = False
-    # dp[0] = neetcode = True (0 + dp[len(word)]) found in wordDict
+    # dp[0] = neetcode = True # found in wordDict # dp[0]=dp[i=0 + len(w)=4] -> dp[0]=dp[4] -> dp[0]=True
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        dp = [False] * (len(s) + 1)
-        dp[len(s)] = True
+        dp = [False] * (len(s) + 1) # [False, False, False, False, False, False, False, False, False]
+        dp[len(s)] = True # [False, False, False, False, False, False, False, False, True]
 
-        for i in range(len(s) - 1, -1, -1): # O(n) loop
+        for i in range(len(s) - 1, -1, -1): # O(n) loop [7,6,5,4,3,2,1,0]
             for w in wordDict: # O(m) loop
                 if (i+len(w)) <= len(s) and s[i: i + len(w)] == w: # O(n) check
                     dp[i] = dp[i + len(w)]
-                if dp[i]:
+                if dp[i]: # match found, no need to check other words.
                     break
-        return dp[0]
+        return dp[0] # if this is True then all sub strings were found in the wordDict.
 print(f"s=neetcode | wordDict=['neet','code'] |{Solution1().wordBreak(s="neetcode", wordDict=['neet','code'])}|")
 print(f"s=catsincars | wordDict=['cats','cat','sin','in','car'] |{Solution1().wordBreak(s="catsincars", wordDict=['cats','cat','sin','in','car'])}|")
 print(f"s=aaaaaaa | wordDict=['aaaa','aaa'] |{Solution1().wordBreak(s="aaaaaaa", wordDict=['aaaa','aaa'])}|")
