@@ -1,7 +1,72 @@
 """
 Python's concurrent.futures module provides a simple and powerful way to run tasks concurrently
 using threads or processes. Below are sample code snippets showing different patterns of usage
-for both thread-based and process-based parallelism, focusing on practical examples for real-world problems.
+for both thread-based and process-based parallelism,
+focusing on practical examples for real-world problems.
+
+Mutual exclusion ensures only one thread accesses a shared resource at a time in multi-threading,
+preventing race conditions.
+
+Progressiveness means if no thread holds a resource and some want it, one will get it without indefinite postponement.
+
+Non-preemptive scheduling lets a thread run until it voluntarily yields, blocks, or finishes. The lock thread puts
+here is also called "mutex".
+
+Preemptive scheduling: the OS can interrupt and stop it.
+
+"Ranking" likely refers to priority or wait ranking in deadlock avoidance, like the banker's algorithm,
+assigning resource ranks to prevent unsafe states.
+
+Deadlocks need four conditions:
+- mutual exclusion (resource non-sharable),
+- hold-and-wait (holding while requesting)
+- no preemption (can't force release)
+- circular wait (thread cycle).
+
+Usage in Deadlocks
+- Non-preemption contributes to deadlocks by blocking forced resource release, fixable via preemption or timeouts.
+- Ranking breaks circular wait by imposing a total order (e.g., lock A before B always),
+ensuring requests follow ranks to avoid cycles.
+
+Rankin + Preemptive
+In non-preemptive resource access, a thread holding a resource (like a lock or mutex) cannot be interrupted or forced
+to release it, even by a higher-priority thread. The lower-rank thread must voluntarily release the resource
+after completing its critical section.
+
+Scenario1:
+- first thread which is non-preemptive, but LOWER rank holds a resource.
+- second thread which is preemptive, but HIGHER rank request for the same resource.
+- Outcome: this scenario does not constitute a deadlock. Deadlock requires mutual blocking among
+multiple threads in a circular wait, along with mutual exclusion, hold-and-wait, and no preemption;
+here, only the higher-priority thread waits indefinitely while the lower-priority one holds the resource
+without waiting for anything else.
+- Problem Type: This is unbounded priority inversion, not deadlock, where the low-priority thread
+(non-preemptive on the resource) blocks the high-priority one indefinitely if it never exits
+its critical section—possibly due to a bug, infinite loop, or excessive computation.
+
+## Resolution Strategies
+- **Timeouts**: Higher-priority thread uses timed waits on the resource; upon timeout,
+    it aborts or escalates (e.g., via watchdog timers in real-time systems).
+- **Priority Inheritance/Ceiling Protocols**: Temporarily boost the holder's priority to match the highest waiter,
+    ensuring it completes quickly without intervention.
+- **Preemption or Forced Release**: Rare in user-space; kernel may intervene for non-preemptable resources
+    via signals or process termination if configured.
+- **Design Prevention**: Use short critical sections, avoid nested locks, and employ hierarchical locking
+    to eliminate cycles.
+
+Short critical sections minimize the time a thread holds a shared resource, reducing blocking and contention risks.
+
+## Short Critical Sections
+- Critical sections are code segments accessing shared resources like variables or files,
+protected by locks (e.g., mutexes) for mutual exclusion. Keeping them short means performing only essential
+operations inside—avoid I/O, complex computations, or loops—to limit hold time, prevent priority inversion,
+and improve system responsiveness.
+
+## Hierarchical Locking
+This technique imposes a strict total order on resources (e.g., by address or ID), requiring threads to
+always acquire locks in that sequence. It breaks circular wait conditions for deadlock prevention:
+lower-ID lock first, then higher-ID. Example: Lock A (ID 1) before B (ID 2) across all threads.
+
 """
 import concurrent.futures
 import time
@@ -28,20 +93,19 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
         result = future.result()
         print(f"Result: {result}")
 
-
 """
 ThreadPoolExecutor: Using "executor.map" for Ordered Results
 You can use executor.map if result order must match SUBMISSION ORDER.
 This prints results in the same order as the original list, regardless of task completion order.
 """
-def mail_letter2(letter):
-    duration = random.randint(1, 5)
-    time.sleep(duration)
-    return f"Letter {letter} mailed"
+# def mail_letter2(letter):
+#     duration = random.randint(1, 5)
+#     time.sleep(duration)
+#     return f"Letter {letter} mailed"
 
 letters = ['A', 'B', 'C', 'D', 'E']
 with concurrent.futures.ThreadPoolExecutor() as executor:
-    results = list(executor.map(mail_letter2, letters))
+    results = list(executor.map(mail_letter, letters))
     for result in results:
         print(result)
 
@@ -55,7 +119,10 @@ def compute(x):
 
 nums = [1, 2, 3, 4, 5]
 with concurrent.futures.ProcessPoolExecutor() as executor:
-    results = list(executor.map(compute, nums))
+    # results = list(executor.map(compute, nums))
+    results = executor.map(compute, nums)
+    for result in results:
+        print(f"result ---> {result}")
     print(results)  # Output: [1, 4, 9, 16, 25]
 
 """

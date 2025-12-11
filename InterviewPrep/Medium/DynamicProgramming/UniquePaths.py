@@ -7,7 +7,8 @@ Unique Paths
 
 There is an m x n grid where you are allowed to move either down or to the right at any point in time.
 
-Given the two integers m and n, return the number of possible unique paths that can be taken from the top-left corner of the grid (grid[0][0]) to the bottom-right corner (grid[m - 1][n - 1]).
+Given the two integers m and n, return the number of possible unique paths
+that can be taken from the top-left corner of the grid (grid[0][0]) to the bottom-right corner (grid[m - 1][n - 1]).
 
 You may assume the output will fit in a 32-bit integer.
 
@@ -41,17 +42,17 @@ class Solution:
         # [1, 1, 1, 1, 1, 1, 1]
 
         # base case, set entire last column = 1
-        # for i in range(m):
-        #     dp[i][n-1] = 1
-        [row.__setitem__(n-1, 1) for row in dp]
+        for i in range(m):
+            dp[i][n-1] = 1
+        # [row.__setitem__(n-1, 1) for row in dp]
         print(f"=====")
         [print(r) for r in dp]
         # [0, 0, 0, 0, 0, 0, 1]
         # [0, 0, 0, 0, 0, 0, 1]
         # [1, 1, 1, 1, 1, 1, 1]
 
-        for i in range(m-2, -1, -1):
-            for j in range(n-2, -1, -1):
+        for i in range(m-2, -1, -1): # row loop O(m)
+            for j in range(n-2, -1, -1): # column loop O(n)
                 dp[i][j] = dp[i+1][j] + dp[i][j+1]
                 # dp[i+1][j] -> move down
                 # dp[i][j+1] -> move right

@@ -39,12 +39,14 @@ def longest_substring_without_duplicates(s: str) -> str:
     start_index = 0
 
     for right in range(len(s)): # O(n)
+        print(f"====left: {left}, right: {right},char_index_map: {char_index_map}")
         if s[right] in char_index_map and char_index_map[s[right]] >= left:
             left = char_index_map[s[right]] + 1
         char_index_map[s[right]] = right
         if right - left + 1 > max_length:
             max_length = right - left + 1
             start_index = left
+        print(f"====left: {left}, right: {right}, max_length|{max_length}|, char_index_map: {char_index_map}")
     print(f"max_length |{max_length}|, start index|{start_index}|, right |{right}|")
     return s[start_index:start_index + max_length] # O(n)
 

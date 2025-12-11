@@ -12,22 +12,24 @@ queue.append(20)
 queue.append(30)
 queue.append(40)
 queue.append(50)
+
+# [10, 20, 30, 40, 50]
 print("Queue BEFORE dequeue:", list(queue))
 
 # Retrieve (peek front)
 front_item = queue[0] if queue else None
-print("Front item:", front_item)
+print("Front item:", front_item) # Front item: 10
 
 # Delete (dequeue)
 # popleft: removes left most item and returns it
 dequeued_item = queue.popleft() if queue else None
-print("Dequeued item:", dequeued_item)
-print("Queue AFTER dequeue:", list(queue))
+print("Dequeued item:", dequeued_item) # Dequeued item: 10
+print("Queue AFTER dequeue:", list(queue)) # [20, 30, 40, 50]
 
 # pop: removes right most item and returns it
 dequeued_item2 = queue.pop() if queue else None
-print("Dequeued item2:", dequeued_item2)
-print("Queue AFTER dequeue:", list(queue))
+print("Dequeued item2:", dequeued_item2) # Dequeued item2: 50
+print("Queue AFTER dequeue:", list(queue)) # [20, 30, 40]
 """
 Queue (FIFO: First In First Out)
 Use when you want to process items in the exact order they arrive

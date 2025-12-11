@@ -11,5 +11,5 @@ payload = """<?xml version="1.0" encoding="utf-8"?>
 </soap:Envelope>"""
 headers = {'Content-Type': 'text/xml; charset=utf-8'}
 
-response = requests.post(url, headers=headers, data=payload)
+response = requests.post(url=url, headers=headers, data=payload)
 print(response.text)

@@ -1,9 +1,12 @@
 """
 https://neetcode.io/problems/products-of-array-discluding-self
 
+Video: https://youtu.be/bNvIQI2wAjk
+
 Products of Array Except Self
 
-Given an integer array nums, return an array output where output[i] is the product of all the elements of nums except nums[i].
+Given an integer array nums, return an array output where
+output[i] is the product of all the elements of nums except nums[i].
 
 Each product is guaranteed to fit in a 32-bit integer.
 
@@ -12,10 +15,9 @@ O(n) time without using the division operation?
 
 Example 1:
 Input: nums = [1,2,4,6]
-
 Output: [48,24,12,8]
-Example 2:
 
+Example 2:
 Input: nums = [-1,0,1,2,3]
 Output: [0,-6,0,0,0]
 
@@ -87,7 +89,8 @@ class Solution:
             output[i] = prefix # NOT creating prefix array and storing its values in output array.
             prefix = prefix * input[i]
         print(f"output1 = {output}")
-        # output = [1,1,2,6]
+        # input  = [1,2,3,4]
+        # output = [1,1,2,6] -> product of prefixes at each index.
 
         # second o(n) loop for POSTFIX
         postfix = 1 # start with postfix[4]=1 -> there is no postfix for input[3]
@@ -104,7 +107,8 @@ class Solution:
             # 24 = 12 * 2
             # 24 = 24 * 1
         print(f"output2 = {output}")
-        # output = [24,12,8,6]
+        # input  = [1,2,3,4]
+        # output = [24,12,8,6] -> -> product of prefixes and postfixes at each index.
         return output
 
 print(f"productExceptSelf of [1,2,3,4] === |{Solution().product_except_self(input=[1,2,4,6])}|")

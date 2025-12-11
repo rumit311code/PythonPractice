@@ -1,6 +1,8 @@
 """
 https://neetcode.io/problems/find-minimum-in-rotated-sorted-array
 
+Video: https://youtu.be/nIVW4P8b1VA
+
 Find Minimum in Rotated Sorted Array
 
 You are given an array of length n which was originally sorted in ascending order.
@@ -39,9 +41,9 @@ from typing import List
 # if left most is smaller than right most -> array is sorted -> return the first element.
 # if rotated array
 #   if middle element >= left most
-#       middle is in left sorted array -> search right side.
-#           otherwise
-#       middle is in right sorted array -> search left side.
+#       middle is in left sorted array -> min is on the right side.
+#   else
+#       middle is in right sorted array -> min is on the left side.
 
 class Solution:
     def findMin(self, nums: List[int]) -> int:

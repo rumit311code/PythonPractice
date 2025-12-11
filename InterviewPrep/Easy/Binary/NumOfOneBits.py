@@ -44,6 +44,11 @@ class Solution:
         #     count2 += 1
         #
         # return count2
+        # Example
+        # n = 00001100(12)
+        # n - 1 = 00001011(11)
+        # -----------------
+        # AND = 00001000(8)   ← Lowest  1 cleared
 """
 For both solutions.
 Runtime: O(1) because at max it will run for O(32) for 32 bit number for solution1 and COUNT times for solution2.

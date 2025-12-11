@@ -1,6 +1,8 @@
 """
 https://neetcode.io/problems/find-target-in-rotated-sorted-array
 
+Video: https://youtu.be/U8XENwh8Oy8
+
 Search in Rotated Sorted Array
 
 You are given an array of length n which was originally sorted in ascending order.
@@ -8,7 +10,8 @@ It has now been rotated between 1 and n times. For example, the array nums = [1,
 
 [3,4,5,6,1,2] if it was rotated 4 times.
 [1,2,3,4,5,6] if it was rotated 6 times.
-Given the rotated sorted array nums and an integer target, return the index of target within nums, or -1 if it is not present.
+Given the rotated sorted array nums and an integer target,
+return the index of target within nums, or -1 if it is not present.
 
 You may assume all elements in the sorted rotated array nums are unique,
 
@@ -77,6 +80,6 @@ print(f"[1,3] ==== |{Solution().search([1,3],4)}|")
 print(f"[1] ==== |{Solution().search([1],1)}|")
 print(f"[1] ==== |{Solution().search([1],3)}|")
 """
-Run time: O(n logn) because of binary search.
+Run time: O(logn) because of binary search.
 Space: O(1) to store the result and min, l and m.
 """

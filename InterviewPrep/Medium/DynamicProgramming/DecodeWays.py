@@ -103,7 +103,7 @@ class Solution:
 # 671 -> 1 -> one -> [(6,7,1)]
 # 1012 -> 2 -> two -> [(10,1,2),(10,12)]
 # 2671 -> 2 -> two -> [(26,7,1),(2,6,7,1)]
-# print(Solution().numDecodings("671"))
+print(Solution().numDecodings("671"))
 # print(Solution().numDecodings("1012"))
 # print(Solution().numDecodings("2671"))
 """

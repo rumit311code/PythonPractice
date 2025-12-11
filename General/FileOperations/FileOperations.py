@@ -10,9 +10,10 @@ Options for open() method
 "t" - Text - Default value. Text mode
 "b" - Binary - Binary mode (e.g. images)
 
-file.read() -> all content
-file.read(5) -> first 5 characters
-file.readLine() -> one line
+file.read() -> all content and return as a string.
+file.read(5) -> first 5 characters.
+file.readLine() -> one line.
+file.readLines() -> all lines as an array of lines.
 """
 
 # 1. Creating and Writing to a File

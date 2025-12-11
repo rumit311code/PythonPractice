@@ -13,7 +13,7 @@ def get_access_token():
     data = {
         'grant_type': 'client_credentials'
     }
-    response = requests.post(token_url, data=data, auth=(client_id, client_secret))
+    response = requests.post(url=token_url, data=data, auth=(client_id, client_secret))
     response.raise_for_status()
     token_info = response.json()
     access_token = token_info['access_token']
@@ -23,7 +23,7 @@ def get_access_token():
 def call_protected_api(access_token):
     api_url = "https://api-server.com/protected/resource"
     headers = {'Authorization': f'Bearer {access_token}'}
-    response = requests.get(api_url, headers=headers) # works same for post also, just that post will have some data.
+    response = requests.get(url=api_url, headers=headers) # works same for post also, just that post will have some data.
     return response
 
 #####

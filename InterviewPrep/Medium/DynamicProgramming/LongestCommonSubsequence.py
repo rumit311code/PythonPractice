@@ -1,9 +1,9 @@
 """
 https://neetcode.io/problems/longest-common-subsequence
 
-Longest Common Subsequence
-
 Video: https://www.youtube.com/watch?v=Ua0GhsJSlWM
+
+Longest Common Subsequence
 
 Given two strings text1 and text2, return the length of the
 longest common subsequence between the two strings if one exists, otherwise return 0.
@@ -35,7 +35,7 @@ text1 and text2 consist of only lowercase English characters.
 
 # recursive: if first chars are equal find lcs of remaining of each,
 # else max of: lcs of first and remain of 2nd and lcs of 2nd remain of first, cache result;
-# nested forloop to compute the cache without recursion;
+# nested for loop to compute the cache without recursion;
 #
 # depth search: bottom up (start at last index and end at first) approach
 # create a matrix of (i+1 x j+1) size -> i(len string1), j (len string2)
@@ -64,23 +64,28 @@ text1 and text2 consist of only lowercase English characters.
 class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
         dp = [[0 for j in range(len(text2) + 1)] for i in range(len(text1) + 1)]
-        # [0, 0, 0, 0]
-        # [0, 0, 0, 0]
-        # [0, 0, 0, 0]
-        # [0, 0, 0, 0]
-        # [0, 0, 0, 0]
-        # [0, 0, 0, 0]
+        #    c  a  t  -
+        # c [0, 0, 0, 0]
+        # r [0, 0, 0, 0]
+        # a [0, 0, 0, 0]
+        # b [0, 0, 0, 0]
+        # t [0, 0, 0, 0]
+        # - [0, 0, 0, 0]
         # all cell values set to 0 to start with
 
         [print(r) for r in dp]
 
         for i in range(len(text1) - 1, -1, -1): # First O(n) loop
             for j in range(len(text2) - 1, -1, -1): # Second O(n) loop
+
                 if text1[i] == text2[j]: # characters match
-                    dp[i][j] = 1 + dp[i+1][j+1] # 1 + diagonal cell value
+                    dp[i][j] = 1 + dp[i+1][j+1]
+                    # dp[i+1][j+1]: diagonal cell value
+
                 else: # characters don't match
                     dp[i][j] = max(dp[i][j+1], dp[i+1][j])
-                    # max of right cell(dp[i][j+1]) or bottom cell(dp[i+1][j])
+                    # dp[i][j+1]: right cell
+                    # dp[i+1][j]: bottom cell
                 print(f"==========")
                 [print(r) for r in dp]
         return dp[0][0] # return top-left cell value.

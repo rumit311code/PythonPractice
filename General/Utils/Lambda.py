@@ -17,10 +17,10 @@ print(x(5, 6, 2))  # Output: 13
 def myfunc(n):
     return lambda a: a * n
 
-mydoubler = myfunc(2)
-mytrippler = myfunc(3)
-print(mydoubler(3))  # Output: 3(n) * 2(a) = 6
-print(mytrippler(3))  # Output: 3(n) * 3(a) = 9
+mydoubler = myfunc(2) # n=2
+mytrippler = myfunc(3) # n=3
+print(mydoubler(3))  # a=3, Output: 2(n) * 3(a) = 6
+print(mytrippler(3))  # a=3, Output: 3(n) * 3(a) = 9
 
 ###### Using Lambda with map() and filter()
 # Doubles each element in a list:

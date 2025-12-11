@@ -25,11 +25,11 @@ def merge_sort(arr):
     mid = len(arr) // 2
     left_half = merge_sort(arr[:mid])
     right_half = merge_sort(arr[mid:])
-    print(f"left1 |{left_half}| === right1|{right_half}|")
+    print(f"====merge_sort: left1 |{left_half}| === right1|{right_half}|")
     return merge(left_half, right_half)
 
 def merge(left, right):
-    print(f"left2 |{left}| === right2|{right}|")
+    print(f"==== ====merge: left2 |{left}| === right2|{right}|")
     sorted_list = []
     i = j = 0
     while i < len(left) and j < len(right):
@@ -39,11 +39,11 @@ def merge(left, right):
         else:
             sorted_list.append(right[j])
             j += 1
-    print(f"sorted_list 1|{sorted_list}|")
-    print(f"left[i:] |{left[i:]}| === right[j:]|{right[j:]}|")
+    print(f"==== ====sorted_list 1|{sorted_list}|")
+    print(f"==== ====left[i:] |{left[i:]}| === right[j:]|{right[j:]}|")
     sorted_list.extend(left[i:])
     sorted_list.extend(right[j:])
-    print(f"sorted_list 2|{sorted_list}|")
+    print(f"==== ====sorted_list 2|{sorted_list}|")
     return sorted_list
 
 # Example use

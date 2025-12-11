@@ -20,7 +20,7 @@ class Solution1:
         return format(n & 0xFFFFFFFF, '032b')
         # 032b will format "10101" -> "00000000000000000000000000010101". 0 is for padding.
         # 32b will format "10101" -> "                            10101". Default for padding is "space".
-        # without 32 bit format, it the number will have only 5 digits.
+        # without 32 bit format, the number will have only 5 digits.
         #   so, reversing 10101 gives 10101 which is the same number, which is incorrect answer.
         #   by formatting in 32 bits, 10101 -> 00000000000000000000000000010101
         #   so, reversing it becomes 10101000000000000000000000000000 -> 2818572288

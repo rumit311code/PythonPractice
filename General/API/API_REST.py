@@ -6,7 +6,7 @@ import requests
 def get_posts():
     url = 'https://jsonplaceholder.typicode.com/posts'
     try:
-        response = requests.get(url)
+        response = requests.get(url=url)
         if response.status_code == 200:
             return response.json()
         else:
@@ -30,7 +30,7 @@ else:
 api_url = "https://jsonplaceholder.typicode.com/todos"
 todo = {"userId": 1, "title": "Buy milk", "completed": False}
 
-response = requests.post(api_url, json=todo)
+response = requests.post(url=api_url, json=todo)
 print(response.json())
 print(response.status_code)
 
@@ -43,7 +43,7 @@ url = 'https://httpbin.org/basic-auth/user/passwd'
 username = 'user'
 password = 'passwd'
 
-response = requests.get(url, auth=HTTPBasicAuth(username, password))
+response = requests.get(url=url, auth=HTTPBasicAuth(username, password))
 
 if response.status_code == 200:
     print("Authentication successful:", response.json())
@@ -60,14 +60,14 @@ api_key = 'your_api_key_here'
 headers = {
     'x-api-key': api_key
 }
-response = requests.get(url, headers=headers)
+response = requests.get(url=url, headers=headers)
 print("Status Code:", response.status_code)
 print("Response Body:", response.text)
 headers = {
     'x-api-key': api_key
 }
 
-response = requests.get(url, headers=headers)
+response = requests.get(url=url, headers=headers)
 
 print("Status Code:", response.status_code)
 print("Response Body:", response.text)
@@ -81,7 +81,7 @@ username = 'user'
 password = 'pass'
 
 # Step 1: Authenticate and get JWT token
-auth_response = requests.post(auth_url, json={'username': username, 'password': password})
+auth_response = requests.post(url=auth_url, json={'username': username, 'password': password})
 
 if auth_response.status_code == 200:
     token = auth_response.json().get('token')
@@ -89,7 +89,7 @@ if auth_response.status_code == 200:
 
     # Step 2: Use token to access protected resource
     headers = {'Authorization': f'Bearer {token}'}
-    response = requests.get(api_url, headers=headers)
+    response = requests.get(url=api_url, headers=headers)
 
     if response.status_code == 200:
         print("Access granted to resource:", response.json())

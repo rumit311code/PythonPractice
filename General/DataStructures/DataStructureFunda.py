@@ -29,9 +29,9 @@ Therefore, sharing references to immutable objects does not lead to unintended s
 
 original_list = [1, 2, "hello"]
 shallow_copy_list = list(original_list) # Or original_list.copy()
+
 # This creates a new integer object 5 and assigns it to shallow_copy_list[0] and
 # does NOT modify original_list[0] which is still pointing at 1 (and not 5).
-
 shallow_copy_list[0] = 5 # updates only shallow_copy_list.
 shallow_copy_list[2] = "world" # updates only shallow_copy_list.
 

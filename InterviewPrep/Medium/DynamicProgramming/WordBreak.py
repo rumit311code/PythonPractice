@@ -61,8 +61,8 @@ class Solution1:
         dp = [False] * (len(s) + 1) # [False, False, False, False, False, False, False, False, False]
         dp[len(s)] = True # [False, False, False, False, False, False, False, False, True]
 
-        for i in range(len(s) - 1, -1, -1): # O(n) loop [7,6,5,4,3,2,1,0]
-            for w in wordDict: # O(m) loop
+        for i in range(len(s) - 1, -1, -1): # O(len(s)) loop [7,6,5,4,3,2,1,0]
+            for w in wordDict: # O(words) loop
                 if (i+len(w)) <= len(s) and s[i: i + len(w)] == w: # O(n) check
                     dp[i] = dp[i + len(w)]
                 if dp[i]: # match found, no need to check other words.
@@ -73,7 +73,8 @@ print(f"s=catsincars | wordDict=['cats','cat','sin','in','car'] |{Solution1().wo
 print(f"s=aaaaaaa | wordDict=['aaaa','aaa'] |{Solution1().wordBreak(s="aaaaaaa", wordDict=['aaaa','aaa'])}|")
 
 """
-Runtime: O(n.m.n) -> m = wordDict length, n = len(s)
+m = wordDict length, n = len(s)
+Runtime: O(n.m.n)
 Space: O(n)
 """
 

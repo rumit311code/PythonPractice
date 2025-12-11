@@ -55,6 +55,8 @@ from typing import List
 #
 # Start at index 3 (value = 3)
 # └── No further elements, ends here
+#
+#
 # Solution2: improve brute force with caching -> Reduces to O(n^2)
 #
 # Bottom up: Start with last index and go up to the first index.
@@ -75,21 +77,16 @@ from typing import List
 
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
+        print(nums)
         lis = [1] * len(nums) # [1,1,1,1]
-        # outer = 0
-        # inner = 0
         for i in range(len(nums) - 1, -1, -1): # O(n) loop, i = [3,2,1,0]
-            print(f"i:{i}, nums:{nums[i]}")
-            # outer += 1
+            print(f"-----i:{i}, nums:{nums[i]}")
             for j in range(i + 1, len(nums)): # O(n) loop, j = [4,3,2,1]
-                print(f"j:{j}, nums:{nums[j]}")
-                # inner += 1
+                print(f"----- -----j:{j}, nums:{nums[j]}, lis[i]:{lis[i]}, lis[j]:{lis[j]}")
                 if nums[i] < nums[j]: # element at a higher index must be more than the lower index
                     lis[i] = max(lis[i], 1 + lis[j])
-                print(f"lis:{lis}")
-                print("----- -----")
-            print("===== =====")
-        # print(f"inner: {inner}, outer: {outer}")
+                print(f"----- -----lis:{lis}")
+            print(f"-----lis:{lis}")
         return max(lis)
 
 print(f"[1,2,4,3] === |{Solution().lengthOfLIS([1,2,4,3])}|")

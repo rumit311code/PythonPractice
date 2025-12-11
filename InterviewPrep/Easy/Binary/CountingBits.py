@@ -62,12 +62,12 @@ class Solution:
         dp = [0] * (n + 1)
         offset = 1 # tracks the power of 2.
 
-        for i in range(1, n + 1): # O(n)
-            print(f"dp |{dp}| === i |{i}| === offset BEFORE|{offset}|")
-            if offset * 2 == i:
-                offset = i
-            print(f"dp |{dp}| === i |{i}| === offset AFTER |{offset}|")
-            dp[i] = 1 + dp[i - offset]
+        for n in range(1, n + 1): # O(n)
+            print(f"dp |{dp}| === n |{n}| === offset BEFORE|{offset}|")
+            if offset * 2 == n:
+                offset = n
+            print(f"dp |{dp}| === n |{n}| === offset AFTER |{offset}|")
+            dp[n] = 1 + dp[n - offset]
         return dp
 
 print(f"15 -> |{Solution().countBits(15)}|")

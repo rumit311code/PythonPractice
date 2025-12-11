@@ -29,28 +29,30 @@ class Solution:
         # nums = [3,2,1,0,4] -> False
         # nums = [1,2,0,1,0] -> True
 
-        goal = len(nums) - 1 # set to 4
+        goal = len(nums) - 1 # last index of nums.
         print(nums)
-        for i in range(len(nums) - 1, -1, -1): # O(n) loop [4,3,2,1,0]
+        for i in range(len(nums) - 1, -1, -1): # O(n) i = [4,3,2,1,0]
             # Example1: nums = [3,2,1,0,4] -> False
-            # i = 4: 4 + 1 >= 4 -> True -> new goal = i = 4
-            # i = 3: 3 + 0 >= 4 -> False -> no change to goal, goal = 4
-            # i = 2: 2 + 1 >= 4 -> False -> no change to goal, goal = 4
-            # i = 1: 1 + 2 >= 4 -> False -> no change to goal, goal = 4
-            # i = 0: 0 + 1 >= 4 -> False -> no change to goal, goal = 4
+            # goal=4
+            # i = 4, nums[i]=4, goal=4: 4 + 4 >= 4 -> True -> new goal = i = 4
+            # i = 3, nums[i]=0, goal=4: 3 + 0 >= 4 -> False -> no change to goal, goal = 4
+            # i = 2, nums[i]=1, goal=4: 2 + 1 >= 4 -> False -> no change to goal, goal = 4
+            # i = 1, nums[i]=2, goal=4: 1 + 2 >= 4 -> False -> no change to goal, goal = 4
+            # i = 0, nums[i]=3, goal=4: 0 + 1 >= 4 -> False -> no change to goal, goal = 4
             # goal !=0 -> so False.
             #
             # Example2: nums = [1,2,0,1,0] -> True
-            # i = 4: 4 + 0 >= 4 -> True -> new goal = i = 4
-            # i = 3: 3 + 1 >= 4 -> True -> new goal = i = 3
-            # i = 2: 2 + 0 >= 3 -> False -> no change to goal, goal = 3
-            # i = 1: 1 + 2 >= 3 -> True -> new goal = i = 1
-            # i = 0: 1 + 1 >= 1 -> True -> new goal = i = 0
+            # goal=4
+            # i = 4, nums[i]=0, goal=4: 4 + 0 >= 4 -> True -> new goal = i = 4
+            # i = 3, nums[i]=1, goal=4: 3 + 1 >= 4 -> True -> new goal = i = 3
+            # i = 2, nums[i]=0, goal=4: 2 + 0 >= 3 -> False -> no change to goal, goal = 3
+            # i = 1, nums[i]=2, goal=4: 1 + 2 >= 3 -> True -> new goal = i = 1
+            # i = 0, nums[i]=1, goal=4: 1 + 1 >= 1 -> True -> new goal = i = 0
             # goal=0 -> so True.
 
             if i + nums[i] >= goal:
                 goal = i
-        return True if goal == 0 else False
+        return goal == 0
 
 print(Solution().canJump([3,2,1,0,4]))
 print(Solution().canJump([1,2,1,0,1]))

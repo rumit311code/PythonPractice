@@ -1,6 +1,8 @@
 """
 https://neetcode.io/problems/maximum-product-subarray
 
+Video: https://youtu.be/lXVy6YWFcRM
+
 Maximum Product Subarray
 
 Given an integer array nums, find a subarray that has the largest product within the array and return it.
