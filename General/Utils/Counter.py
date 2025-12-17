@@ -3,8 +3,10 @@ from statistics import mode
 
 def most_frequent(List):
     occurence_count = Counter(List)
+    print(f"occurence_count |{occurence_count.items()}|")
     print(f"occurence_count |{occurence_count}|")
     print(f"occurence_count.most_common(1) |{occurence_count.most_common(1)}|")
+    print(f"occurence_count.most_common(3) |{occurence_count.most_common(3)}|")
     print(f"occurence_count.most_common(1)[0] |{occurence_count.most_common(1)[0]}|")
     print(f"occurence_count.most_common(1)[0][0] |{occurence_count.most_common(1)[0][0]}|")
     return occurence_count.most_common(1)[0][0]
