@@ -1,0 +1,3 @@
+- This project has the code discussed on youtube videos from **[NeetCode](https://www.youtube.com/@NeetCode)** for the problems in https://docs.google.com/spreadsheets/d/1A2PaQKcdwO_lwxz9bAnxXnIQayCouZP6d-ENrBz_NXc/edit?gid=0#gid=0.
+- The code has comments to explain the logic to solve each problem along with some multiple approaches to compare against.
+- Project also ncludes sample code for some of the python's in-built methods and datastructures.
